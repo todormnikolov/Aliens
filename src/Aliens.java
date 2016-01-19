@@ -23,7 +23,7 @@ public class Aliens {
 			do {
 				System.out.print("Input a english word: ");
 				str = sc.next();
-			} while (str.length() < 2 || str.length() > 100000);
+			} while (!inputLengthCheck(str));
 
 			words[i] = str.toLowerCase();
 
@@ -32,7 +32,7 @@ public class Aliens {
 			do {
 				System.out.print("Input an alien sentence: ");
 				str = sc.nextLine();
-			} while (str.length() < 2 || str.length() > 100000 || words[i].length() > str.length());
+			} while (!inputLengthCheck(str) || words[i].length() > str.length());
 
 			alienSentences[i] = str.toLowerCase();
 		}
@@ -44,6 +44,10 @@ public class Aliens {
 
 		sc.close();
 
+	}
+	
+	public static boolean inputLengthCheck(String s) {
+		return (s.length() >= 2 && s.length() <= 100000) ? true : false;
 	}
 
 	public static void printResult(String word, String sentence) {
@@ -61,10 +65,10 @@ public class Aliens {
 		}
 
 		System.out.println(counter);
-		
+
 		if (counter != 0) {
-			//print indexes without last interval in string
-			System.out.println(output.substring(0, output.length()-1));
+			// print indexes without last interval in string
+			System.out.println(output.substring(0, output.length() - 1));
 		}
 
 	}
