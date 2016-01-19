@@ -48,29 +48,25 @@ public class Aliens {
 
 	public static void printResult(String word, String sentence) {
 
-		int index = sentence.indexOf(word);
+		int index = 0;
+		int counter = 0;
+		String output = "";
 
-		if (index == -1) {
-			System.out.println(0);
-		} else {
-
-			int counter = 1;
-			String output = "" + index;
-
-			for (int i = index + 1; i < sentence.length(); i++) {
-				index = sentence.indexOf(word, ++index);
-				if (index != -1) {
-					counter++;
-					output += " " + index;
-				} else {
-					break;
-				}
+		while (index != -1) {
+			index = sentence.indexOf(word, index);
+			if (index != -1) {
+				counter++;
+				output += index++ + " ";
 			}
-
-			System.out.println(counter);
-			System.out.println(output);
-
 		}
+
+		System.out.println(counter);
+		
+		if (counter != 0) {
+			//print indexes without last interval in string
+			System.out.println(output.substring(0, output.length()-1));
+		}
+
 	}
 
 }
