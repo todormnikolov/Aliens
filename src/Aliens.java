@@ -35,7 +35,6 @@ public class Aliens {
 			} while (!inputLengthRangeCheck(str)  || !inputStringCheck(str) || words[i].length() > str.length());
 
 			alienSentences[i] = str;
-			System.out.println(alienSentences[i]);
 		}
 
 		for (byte i = 0; i < numberOfTests; i++) {
