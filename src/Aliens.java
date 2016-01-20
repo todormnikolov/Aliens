@@ -32,7 +32,7 @@ public class Aliens {
 			do {
 				System.out.print("Input an alien sentence: ");
 				str = replaceIntervals(formatInput(sc.nextLine()));
-			} while (!inputLengthRangeCheck(str)  || !inputStringCheck(str) || words[i].length() > str.length());
+			} while (!inputLengthRangeCheck(str) || !inputStringCheck(str) || words[i].length() > str.length());
 
 			alienSentences[i] = str;
 		}
@@ -49,15 +49,15 @@ public class Aliens {
 	public static String formatInput(String s) {
 		return s.toLowerCase();
 	}
-	
-	public static String replaceIntervals(String s){
+
+	public static String replaceIntervals(String s) {
 		return s.replaceAll(" ", "");
 	}
 
 	public static boolean inputStringCheck(String s) {
 
 		char c;
-
+		
 		for (int i = 0; i < s.length(); i++) {
 
 			c = s.charAt(i);
@@ -72,7 +72,13 @@ public class Aliens {
 	}
 
 	public static boolean inputLengthRangeCheck(String s) {
-		return (s.length() >= 2 && s.length() <= 100000) ? true : false;
+
+		byte min = 2;
+		int max = 100000;
+
+		int length = s.length();
+
+		return (length < min || length > max) ? false : true;
 	}
 
 	public static void printResult(String word, String sentence) {
