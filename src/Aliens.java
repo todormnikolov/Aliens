@@ -6,11 +6,11 @@ public class Aliens {
 
 		Scanner sc = new Scanner(System.in);
 
-		int numberOfTests;
+		byte numberOfTests;
 
 		do {
 			System.out.print("Input number of test: ");
-			numberOfTests = sc.nextInt();
+			numberOfTests = sc.nextByte();
 		} while (numberOfTests < 1 || numberOfTests > 40);
 
 		String[] words = new String[numberOfTests];
@@ -18,26 +18,27 @@ public class Aliens {
 
 		String str = "";
 
-		for (int i = 0; i < numberOfTests; i++) {
+		for (byte i = 0; i < numberOfTests; i++) {
 
 			do {
 				System.out.print("Input a english word: ");
-				str = sc.next();
-			} while (!inputLengthCheck(str));
+				str = formatInput(sc.next());
+			} while (!inputLengthRangeCheck(str) || !inputStringCheck(str));
 
-			words[i] = str.toLowerCase();
+			words[i] = str;
 
 			sc.nextLine(); // skip double print string before next scanner
 
 			do {
 				System.out.print("Input an alien sentence: ");
-				str = sc.nextLine();
-			} while (!inputLengthCheck(str) || words[i].length() > str.length());
+				str = replaceIntervals(formatInput(sc.nextLine()));
+			} while (!inputLengthRangeCheck(str)  || !inputStringCheck(str) || words[i].length() > str.length());
 
-			alienSentences[i] = str.toLowerCase();
+			alienSentences[i] = str;
+			System.out.println(alienSentences[i]);
 		}
 
-		for (int i = 0; i < numberOfTests; i++) {
+		for (byte i = 0; i < numberOfTests; i++) {
 
 			printResult(words[i], alienSentences[i]);
 		}
@@ -45,8 +46,33 @@ public class Aliens {
 		sc.close();
 
 	}
+
+	public static String formatInput(String s) {
+		return s.toLowerCase();
+	}
 	
-	public static boolean inputLengthCheck(String s) {
+	public static String replaceIntervals(String s){
+		return s.replaceAll(" ", "");
+	}
+
+	public static boolean inputStringCheck(String s) {
+
+		char c;
+
+		for (int i = 0; i < s.length(); i++) {
+
+			c = s.charAt(i);
+
+			if (c < 'a' || c > 'z') {
+				return false;
+			}
+		}
+
+		return true;
+
+	}
+
+	public static boolean inputLengthRangeCheck(String s) {
 		return (s.length() >= 2 && s.length() <= 100000) ? true : false;
 	}
 
