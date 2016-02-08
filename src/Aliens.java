@@ -163,7 +163,7 @@ public class Aliens {
 			c = input.charAt(i);
 
 			if (c < 'a' || c > 'z') {
-				System.out.println("Incorrect input data! The input must be contain only letters. Try again...");
+				System.out.println("Incorrect input data! The input must be contain only latin letters. Try again...");
 				return false;
 			}
 		}
