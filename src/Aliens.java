@@ -41,7 +41,7 @@ public class Aliens {
 				 * English word
 				 */
 				System.out.print("Input an English word: ");
-				input = sc.next().trim().toLowerCase();
+				input = sc.next().toLowerCase();
 
 				/**
 				 * uncomment next line to generate an English word
@@ -64,7 +64,7 @@ public class Aliens {
 				 * text
 				 */
 				System.out.print("Input an alien text: ");
-				input = sc.next().trim().toLowerCase();
+				input = sc.next().toLowerCase();
 
 				/**
 				 * uncomment next line to generate alien text
