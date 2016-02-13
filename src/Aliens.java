@@ -201,13 +201,17 @@ public class Aliens {
 	 * 
 	 * @param word
 	 * @param text
-	 * @return Returns an array of string elements with index values on found
-	 *         parameter word in parameter text. Return null when ins't fount
-	 *         match.
+	 * @return Returns an array of two string elements. First element store
+	 *         number of match on parameter word in the text parameter, second -
+	 *         start index for each match. Second element is null when ins't
+	 *         fount any match.
 	 */
 	public static String[] searchMatches(String word, String text) {
 
 		int index = 0;
+		int counter = 0;
+
+		String[] result = new String[2];
 
 		StringBuilder output = new StringBuilder();
 
@@ -217,17 +221,22 @@ public class Aliens {
 
 			if (index != -1) {
 				output.append(index++ + " ");
+				counter++;
 			} else {
 				break;
 			}
 
 		}
 
+		result[0] = (String.valueOf(counter));
+
 		if (output.length() == 0) {
-			return null;
+			return result;
 		}
 
-		return output.toString().split(" ");
+		result[1] = output.toString().substring(0, output.length() - 1);
+
+		return result;
 	}
 
 	/**
@@ -250,29 +259,18 @@ public class Aliens {
 	 */
 	public static void printResult(String[][] data, byte numberOfTests) {
 
-		String[] indexes;
+		String[] result;
 
 		for (byte i = 0; i < numberOfTests; i++) {
 
-			indexes = searchMatches(data[i][0], data[i][1]);
+			result = searchMatches(data[i][0], data[i][1]);
 
-			System.out.printf("Test %d\nFound matches: ", i + 1);
+			System.out.printf("Test %d\nFound matches: %s\n", i + 1, result[0]);
 
-			if (indexes == null) {
-				System.out.println(0);
-				continue;
+			if (result[1] != null) {
+				System.out.println("Start indexes: " + result[1]);
 			}
 
-			int lastIndex = indexes.length;
-
-			System.out.println(lastIndex--);
-			System.out.print("Start indexes: ");
-
-			for (int j = 0; j < lastIndex; j++) {
-				System.out.print(indexes[j] + " ");
-			}
-
-			System.out.println(indexes[lastIndex]);
 		}
 	}
 
